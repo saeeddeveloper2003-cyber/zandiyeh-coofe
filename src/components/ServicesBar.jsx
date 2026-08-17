@@ -21,7 +21,7 @@ export default function ServicesBar() {
           </div>
         </div>
 
-        <div className="hero-service flex items-center justify-center gap-4 px-5 py-5 text-center sm:py-6">
+        <div className="className=hero-service flex items-center justify-center gap-4 px-5 py-5 text-center sm:py-6">
           <MapPin size={21} strokeWidth={1.8} className="shrink-0 text-[#c9a26a]" aria-hidden="true" />
           <div>
             <div className="text-sm font-extrabold text-[#f3eada] sm:text-base">انتخاب مبدأ</div>
