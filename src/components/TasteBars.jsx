@@ -1,0 +1,3 @@
+import React from "react";
+import { tasteLabels } from '../data/products';
+export default function TasteBars({profile}){return <div className="space-y-3">{tasteLabels.map(({key,label})=><div key={key}><div className="mb-1.5 flex items-center justify-between text-xs text-[#93aa9c]"><span>{label}</span><span>{Number(profile[key]||0).toFixed(1)} / ۵</span></div><div className="h-1.5 overflow-hidden rounded-full bg-white/8"><div className="h-full rounded-full bg-gradient-to-l from-[#e3c081] to-[#c9a26a] transition-all" style={{width:`${Math.min(100,(profile[key]||0)/5*100)}%`}}/></div></div>)}</div>}
