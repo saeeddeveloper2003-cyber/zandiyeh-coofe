@@ -380,25 +380,7 @@ app.use(
 );
 
 /* =========================================================
-   START
+   VERCEL EXPORT
 ========================================================= */
 
-const PORT =
-  Number(process.env.PORT) || 4000;
-
-app.listen(
-  PORT,
-  () => {
-    logger.info(
-      `Zandieh backend running on http://localhost:${PORT}`
-    );
-
-    logger.info(
-      `Backend public URL: ${process.env.BACKEND_PUBLIC_URL}`
-    );
-
-    logger.info(
-      `Allowed CORS origins: ${allowedOrigins.join(', ')}`
-    );
-  }
-);
+module.exports = app;
