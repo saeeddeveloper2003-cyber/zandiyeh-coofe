@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+@font-face{font-family:"Vazirmatn";src:local("Vazirmatn");font-display:swap;font-weight:100 900;}
+
+:root {
+  color-scheme: dark;
+  --bg: #0a0a0b;
+  --emerald: #0e332b;
+  --emerald-2: #1c4d3f;
+  --emerald-3: #2c6e56;
+  --gold: #c9a26a;
+  --gold-2: #e3c081;
+  --cream: #f3eada;
+  --sage: #93aa9c;
+  --danger: #ef8f7b;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: "Vazirmatn", sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  line-height: 1.8;
+  overflow-x: hidden;
+}
+button, input, textarea { font: inherit; }
+button { cursor: pointer; }
+::selection { background: var(--gold); color: var(--bg); }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: linear-gradient(var(--emerald-3), var(--gold)); border-radius: 999px; border: 2px solid var(--bg); }
+
+.grain::after {
+  content: ""; position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: .028; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .75s cubic-bezier(.16,.8,.24,1), transform .75s cubic-bezier(.16,.8,.24,1); }
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* Home hero polish */
+#home {
+  isolation: isolate;
+}
+
+
+
+.hero-services {
+  animation-duration: 950ms;
+}
+.hero-services::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,.015), transparent 38%);
+}
+.hero-service {
+  position: relative;
+  transition: background-color .35s ease, transform .35s ease;
+}
+.hero-service:hover {
+  background: rgba(255,255,255,.018);
+}
+@media (max-width: 639px) {
+  .hero-services { position: relative; margin-top: 3.5rem; }
+  #home { padding-bottom: 0; }
+}
+
+/* Header motion: subtle, premium, and intentionally restrained. */
+.header-smooth {
+  animation: headerDrop 900ms cubic-bezier(.16, .8, .24, 1) both;
+}
+.header-inner { animation: headerFade 1100ms cubic-bezier(.16, .8, .24, 1) 120ms both; }
+.header-logo-text { position: relative; display: inline-block; }
+.header-logo-text::after {
+  content: "";
+  position: absolute;
+  inset: 15% -10%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(227,192,129,.22), transparent);
+  transform: translateX(120%);
+  opacity: 0;
+  pointer-events: none;
+}
+.header-logo:hover .header-logo-text::after {
+  opacity: 1;
+  animation: logoSweep 850ms ease-out both;
+}
+.header-nav-item { animation: navItemIn 700ms cubic-bezier(.16,.8,.24,1) both; }
+.header-nav-item:nth-child(1) { animation-delay: 180ms; }
+.header-nav-item:nth-child(2) { animation-delay: 240ms; }
+.header-nav-item:nth-child(3) { animation-delay: 300ms; }
+.header-nav-item:nth-child(4) { animation-delay: 360ms; }
+.header-actions { animation: headerFade 800ms cubic-bezier(.16,.8,.24,1) 260ms both; }
+.header-cart-count { animation: cartPop 420ms cubic-bezier(.34,1.56,.64,1) both; }
+.header-mobile-menu .header-nav-item { animation-delay: 0ms; }
+
+@keyframes headerDrop {
+  from { opacity: 0; transform: translateY(-14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes headerFade {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes navItemIn {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes logoSweep {
+  from { transform: translateX(-120%); }
+  to { transform: translateX(120%); }
+}
+@keyframes cartPop {
+  0% { transform: scale(.82); opacity: .4; }
+  65% { transform: scale(1.08); opacity: 1; }
+  100% { transform: scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .header-smooth, .header-inner, .header-nav-item, .header-actions, .header-cart-count { animation: none !important; }
+  .header-logo-text::after { display: none; }
+}
+
+
+/* Hero entrance motion: the brand, copy, and CTAs appear softly with the page. */
+.hero-reveal {
+  opacity: 0;
+  transform: translateY(18px) scale(.985);
+  animation: heroRise 900ms cubic-bezier(.16,.8,.24,1) both;
+  will-change: transform, opacity;
+}
+.hero-badge { animation-delay: 120ms; }
+.hero-title { animation-delay: 240ms; }
+.hero-description { animation-delay: 400ms; }
+.hero-buttons { animation-delay: 540ms; }
+.hero-scroll { animation-delay: 760ms; }
+.hero-button {
+  transition: transform 450ms cubic-bezier(.16,.8,.24,1), box-shadow 450ms cubic-bezier(.16,.8,.24,1), background-color 250ms ease, border-color 250ms ease;
+}
+.hero-button:hover { transform: translateY(-3px); }
+.hero-button-primary:hover { box-shadow: 0 14px 32px rgba(212,173,115,.20); }
+.hero-button-secondary:hover { box-shadow: 0 12px 28px rgba(201,162,106,.14); }
+@keyframes heroRise {
+  from { opacity: 0; transform: translateY(18px) scale(.985); filter: blur(4px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal { animation: none !important; opacity: 1; transform: none; filter: none; }
+}
