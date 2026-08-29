@@ -384,3 +384,12 @@ app.use(
 ========================================================= */
 
 module.exports = app;
+const PORT = Number(process.env.PORT || 4000);
+
+if (require.main === module) {
+  app.listen(PORT, '0.0.0.0', () => {
+    logger.info(`Backend listening on port ${PORT}`);
+  });
+}
+
+module.exports = app;
